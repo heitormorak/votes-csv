@@ -1,10 +1,10 @@
 import csv
 from collections import defaultdict
 
-bills_path = 'C:/GIT/csv-python/VotesCSV/data/bills.csv'
-legislators_path = 'C:/GIT/csv-python/VotesCSV/data/legislators.csv'
-votes_path = 'C:/GIT/csv-python/VotesCSV/data/votes.csv'
-vote_results_path = 'C:/GIT/csv-python/VotesCSV/data/vote_results.csv'
+bills_path = 'data/bills.csv'
+legislators_path = 'data/legislators.csv'
+votes_path = 'data/votes.csv'
+vote_results_path = 'data/vote_results.csv'
 
 def read_csv(file_path):
     with open(file_path, mode='r', encoding='utf-8') as file:

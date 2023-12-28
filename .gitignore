@@ -1,2 +1,6 @@
 ﻿venv
 VotesCSV/db.sqlite3
+backend/VotesCSV/db.sqlite3
+backend/VotesCSV/VotesCSV/__pycache__
+backend/VotesCSV/appcsv/migrations
+backend/VotesCSV/appcsv/__pycache__
