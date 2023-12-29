@@ -2,51 +2,75 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [dados, setDados] = useState(null);
-  const [selecao, setSelecao] = useState('');
+  const [data, setData] = useState(null);
+  const [selection, setSelection] = useState('');
 
-  const buscarDados = (tipo) => {
-    fetch(`http://127.0.0.1:8000/${tipo}/`)
+  const fetchData = (type) => {
+    fetch(`http://127.0.0.1:8000/${type}/`)
       .then(response => response.json())
-      .then(data => setDados(data))
+      .then(data => setData(data))
       .catch(error => console.error(error));
 
-    setSelecao(tipo);
+    setSelection(type);
   };
 
   return (
     <div className="App">
-      <button onClick={() => buscarDados('legislator_votes')}>Votes for Legislator</button>
-      <button onClick={() => buscarDados('bill_votes')}>Votes for Bills</button>
-      <TabelaDados dados={dados} tipo={selecao} />
+      <button className="button" onClick={() => fetchData('legislator_votes')}>Votes for Legislator</button>
+      <button className="button" onClick={() => fetchData('bill_votes')}>Votes for Bills</button>
+      <DataTable data={data} type={selection} />
     </div>
   );
 }
 
-function TabelaDados({ dados, tipo }) {
-  if (!dados) return null;
+function DataTable({ data, type }) {
+  if (!data) return null;
 
-  //init
   return (
-    <table>
-      <thead>
-        <tr>
-          {tipo === 'legislator_votes' && <th>Legislator</th>}
-          {tipo === 'bill_votes' && <th>Bill</th>}
-          <th>Yes Votes</th>
-          <th>No Votes</th>
-        </tr>
-      </thead>
-      <tbody>
-        {Object.entries(dados).map(([key, value]) => (
-          <tr key={key}>
-            <td>{key}</td>
-            <td>{value.yes}</td>
-            <td>{value.no}</td>
+    <div className="table-container">
+      <table className="styled-table"> 
+        <thead>
+        <tr className="active-row">
+            {type === 'legislator_votes' && (
+              <>
+                <th>Legislator</th>
+                <th>Supported Bills</th>
+                <th>Opposed Bills</th>
+              </>
+            )}
+            {type === 'bill_votes' && (
+              <>
+                <th>Bill</th>
+                <th>Supporters</th>
+                <th>Opposers</th>
+                <th>Primary Sponsor</th>
+              </>
+            )}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {Object.entries(data).map(([key, value]) => (
+            <tr key={key}>
+              {type === 'legislator_votes' && <td>{value.name}</td>}
+              {type === 'bill_votes' && (
+                <>
+                  <td>{value.bill_name}</td>
+                  <td>{value.supporters}</td>
+                  <td>{value.opposers}</td>
+                  <td>{value.primary_sponsor}</td>
+                </>
+              )}
+              {type === 'legislator_votes' && (
+                <>
+                  <td>{value.yes}</td>
+                  <td>{value.no}</td>
+                </>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 

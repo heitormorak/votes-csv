@@ -1,38 +1,80 @@
-.App {
-  text-align: center;
+body {
+    font-family: Arial, sans-serif; 
+    text-align: center; 
+    background-color: #f0f0f0; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    margin: 0;
+    justify-content: flex-start; 
+    padding-top: 20px; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.button {
+    background-color: #007aff; 
+    color: white;
+    border: none;
+    border-radius: 10px; 
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.button:hover {
+    background-color: #005ecb; 
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.table-container {
+    max-height: 600px; 
+    overflow-y: auto; 
+    width: 100%; 
+    margin: 20px 0;
 }
 
-.App-link {
-  color: #61dafb;
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); 
+    border-radius: 8px; 
+    overflow: hidden; 
+    background-color: #ffffff; 
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.styled-table thead tr {
+    background-color: #f0f0f0; 
+    color: #333333; 
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: #f9f9f9; 
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #0066cc;
+}
+
+.styled-table tbody tr:hover {
+    background-color: #f1f1f1; 
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #0066cc;
 }
